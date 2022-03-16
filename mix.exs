@@ -45,6 +45,7 @@ defmodule GoogleApis.Mixfile do
   defp deps do
     [
       {:google_api_discovery, "~> 0.12.0"},
+      {:google_gax, path: "./clients/gax", override: true},
       {:tesla, "~> 1.0"},
       {:oauth2, "~> 2.0"},
       {:temp, "~> 0.4"},
