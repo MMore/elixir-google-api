@@ -21,16 +21,25 @@ defmodule GoogleApi.GKEHub.V1.Model.MembershipFeatureSpec do
 
   ## Attributes
 
+  *   `anthosvm` (*type:* `GoogleApi.GKEHub.V1.Model.AnthosVMMembershipSpec.t`, *default:* `nil`) - AnthosVM spec.
   *   `configmanagement` (*type:* `GoogleApi.GKEHub.V1.Model.ConfigManagementMembershipSpec.t`, *default:* `nil`) - Config Management-specific spec.
+  *   `identityservice` (*type:* `GoogleApi.GKEHub.V1.Model.IdentityServiceMembershipSpec.t`, *default:* `nil`) - Identity Service-specific spec.
+  *   `mesh` (*type:* `GoogleApi.GKEHub.V1.Model.ServiceMeshMembershipSpec.t`, *default:* `nil`) - Anthos Service Mesh-specific spec
   """
 
   use GoogleApi.Gax.ModelBase
 
   @type t :: %__MODULE__{
-          :configmanagement => GoogleApi.GKEHub.V1.Model.ConfigManagementMembershipSpec.t() | nil
+          :anthosvm => GoogleApi.GKEHub.V1.Model.AnthosVMMembershipSpec.t() | nil,
+          :configmanagement => GoogleApi.GKEHub.V1.Model.ConfigManagementMembershipSpec.t() | nil,
+          :identityservice => GoogleApi.GKEHub.V1.Model.IdentityServiceMembershipSpec.t() | nil,
+          :mesh => GoogleApi.GKEHub.V1.Model.ServiceMeshMembershipSpec.t() | nil
         }
 
+  field(:anthosvm, as: GoogleApi.GKEHub.V1.Model.AnthosVMMembershipSpec)
   field(:configmanagement, as: GoogleApi.GKEHub.V1.Model.ConfigManagementMembershipSpec)
+  field(:identityservice, as: GoogleApi.GKEHub.V1.Model.IdentityServiceMembershipSpec)
+  field(:mesh, as: GoogleApi.GKEHub.V1.Model.ServiceMeshMembershipSpec)
 end
 
 defimpl Poison.Decoder, for: GoogleApi.GKEHub.V1.Model.MembershipFeatureSpec do

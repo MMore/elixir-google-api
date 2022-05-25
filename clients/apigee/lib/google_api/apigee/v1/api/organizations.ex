@@ -87,7 +87,7 @@ defmodule GoogleApi.Apigee.V1.Api.Organizations do
   end
 
   @doc """
-  Delete an Apigee organization. Only supported for SubscriptionType TRIAL.
+  Delete an Apigee organization. For organizations with BillingType EVALUATION, an immediate deletion is performed. For paid organizations, a soft-deletion is performed. The organization can be restored within the soft-deletion period - which can be controlled using the retention field in the request.
 
   ## Parameters
 
@@ -105,6 +105,7 @@ defmodule GoogleApi.Apigee.V1.Api.Organizations do
       *   `:quotaUser` (*type:* `String.t`) - Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
       *   `:uploadType` (*type:* `String.t`) - Legacy upload protocol for media (e.g. "media", "multipart").
       *   `:upload_protocol` (*type:* `String.t`) - Upload protocol for media (e.g. "raw", "multipart").
+      *   `:retention` (*type:* `String.t`) - Optional. This setting is only applicable for organizations that are soft-deleted (i.e. BillingType is not EVALUATION). It controls how long Organization data will be retained after the initial delete operation completes. During this period, the Organization may be restored to its last known state. After this period, the Organization will no longer be able to be restored.
   *   `opts` (*type:* `keyword()`) - Call options
 
   ## Returns
@@ -129,7 +130,8 @@ defmodule GoogleApi.Apigee.V1.Api.Organizations do
       :prettyPrint => :query,
       :quotaUser => :query,
       :uploadType => :query,
-      :upload_protocol => :query
+      :upload_protocol => :query,
+      :retention => :query
     }
 
     request =
@@ -7732,7 +7734,7 @@ defmodule GoogleApi.Apigee.V1.Api.Organizations do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.Apigee.V1.Connection.t`) - Connection to server
-  *   `resource` (*type:* `String.t`) - REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+  *   `resource` (*type:* `String.t`) - REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
       *   `:access_token` (*type:* `String.t`) - OAuth access token.
@@ -7876,7 +7878,7 @@ defmodule GoogleApi.Apigee.V1.Api.Organizations do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.Apigee.V1.Connection.t`) - Connection to server
-  *   `resource` (*type:* `String.t`) - REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+  *   `resource` (*type:* `String.t`) - REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
       *   `:access_token` (*type:* `String.t`) - OAuth access token.
@@ -8020,7 +8022,7 @@ defmodule GoogleApi.Apigee.V1.Api.Organizations do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.Apigee.V1.Connection.t`) - Connection to server
-  *   `resource` (*type:* `String.t`) - REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+  *   `resource` (*type:* `String.t`) - REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
       *   `:access_token` (*type:* `String.t`) - OAuth access token.

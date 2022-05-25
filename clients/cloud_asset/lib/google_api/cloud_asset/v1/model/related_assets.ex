@@ -17,7 +17,7 @@
 
 defmodule GoogleApi.CloudAsset.V1.Model.RelatedAssets do
   @moduledoc """
-  The detailed related assets with the `relationship_type`.
+  DEPRECATED. This message only presents for the purpose of backward-compatibility. The server will never populate this message in responses. The detailed related assets with the `relationship_type`.
 
   ## Attributes
 

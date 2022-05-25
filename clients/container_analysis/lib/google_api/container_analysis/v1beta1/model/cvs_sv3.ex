@@ -17,7 +17,7 @@
 
 defmodule GoogleApi.ContainerAnalysis.V1beta1.Model.CVSSv3 do
   @moduledoc """
-  Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document
+  Deprecated. Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document
 
   ## Attributes
 

@@ -39,6 +39,7 @@ defmodule GoogleApi.AndroidManagement.V1.Model.Policy do
   *   `statusReportingSettings` (*type:* `GoogleApi.AndroidManagement.V1.Model.StatusReportingSettings.t`, *default:* `nil`) - Status reporting settings
   *   `tetheringConfigDisabled` (*type:* `boolean()`, *default:* `nil`) - Whether configuring tethering and portable hotspots is disabled.
   *   `outgoingBeamDisabled` (*type:* `boolean()`, *default:* `nil`) - Whether using NFC to beam data from apps is disabled.
+  *   `usageLog` (*type:* `GoogleApi.AndroidManagement.V1.Model.UsageLog.t`, *default:* `nil`) - Configuration of device activity logging.
   *   `permittedInputMethods` (*type:* `GoogleApi.AndroidManagement.V1.Model.PackageNameList.t`, *default:* `nil`) - If present, only the input methods provided by packages in this list are permitted. If this field is present, but the list is empty, then only system input methods are permitted.
   *   `outgoingCallsDisabled` (*type:* `boolean()`, *default:* `nil`) - Whether outgoing calls are disabled.
   *   `persistentPreferredActivities` (*type:* `list(GoogleApi.AndroidManagement.V1.Model.PersistentPreferredActivity.t)`, *default:* `nil`) - Default intent handler activities.
@@ -102,10 +103,10 @@ defmodule GoogleApi.AndroidManagement.V1.Model.Policy do
   *   `blockApplicationsEnabled` (*type:* `boolean()`, *default:* `nil`) - Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.
   *   `privateKeySelectionEnabled` (*type:* `boolean()`, *default:* `nil`) - Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable.
   *   `mobileNetworksConfigDisabled` (*type:* `boolean()`, *default:* `nil`) - Whether configuring mobile networks is disabled.
-  *   `permittedAccessibilityServices` (*type:* `GoogleApi.AndroidManagement.V1.Model.PackageNameList.t`, *default:* `nil`) - Specifies permitted accessibility services. If the field is not set, any accessibility service can be used. If the field is set, only the accessibility services in this list and the system's built-in accessibility service can be used. In particular, if the field is set to empty, only the system's built-in accessibility servicess can be used.
+  *   `permittedAccessibilityServices` (*type:* `GoogleApi.AndroidManagement.V1.Model.PackageNameList.t`, *default:* `nil`) - Specifies permitted accessibility services. If the field is not set, any accessibility service can be used. If the field is set, only the accessibility services in this list and the system's built-in accessibility service can be used. In particular, if the field is set to empty, only the system's built-in accessibility servicess can be used. This can be set on fully managed devices and on work profiles. When applied to a work profile, this affects both the personal profile and the work profile.
   *   `modifyAccountsDisabled` (*type:* `boolean()`, *default:* `nil`) - Whether adding or removing accounts is disabled.
   *   `shareLocationDisabled` (*type:* `boolean()`, *default:* `nil`) - Whether location sharing is disabled.
-  *   `passwordRequirements` (*type:* `GoogleApi.AndroidManagement.V1.Model.PasswordRequirements.t`, *default:* `nil`) - Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here. unified_lock_settings cannot be used here
+  *   `passwordRequirements` (*type:* `GoogleApi.AndroidManagement.V1.Model.PasswordRequirements.t`, *default:* `nil`) - Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here.
   *   `networkResetDisabled` (*type:* `boolean()`, *default:* `nil`) - Whether resetting network settings is disabled.
   *   `maximumTimeToLock` (*type:* `String.t`, *default:* `nil`) - Maximum time in milliseconds for user activity until the device locks. A value of 0 means there is no restriction.
   """
@@ -135,6 +136,7 @@ defmodule GoogleApi.AndroidManagement.V1.Model.Policy do
             GoogleApi.AndroidManagement.V1.Model.StatusReportingSettings.t() | nil,
           :tetheringConfigDisabled => boolean() | nil,
           :outgoingBeamDisabled => boolean() | nil,
+          :usageLog => GoogleApi.AndroidManagement.V1.Model.UsageLog.t() | nil,
           :permittedInputMethods =>
             GoogleApi.AndroidManagement.V1.Model.PackageNameList.t() | nil,
           :outgoingCallsDisabled => boolean() | nil,
@@ -244,6 +246,7 @@ defmodule GoogleApi.AndroidManagement.V1.Model.Policy do
 
   field(:tetheringConfigDisabled)
   field(:outgoingBeamDisabled)
+  field(:usageLog, as: GoogleApi.AndroidManagement.V1.Model.UsageLog)
   field(:permittedInputMethods, as: GoogleApi.AndroidManagement.V1.Model.PackageNameList)
   field(:outgoingCallsDisabled)
 

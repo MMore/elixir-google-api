@@ -86,6 +86,7 @@ defmodule GoogleApi.Content.V21.Model.Product do
   *   `channel` (*type:* `String.t`, *default:* `nil`) - Required. The item's channel (online or local). Acceptable values are: - "`local`" - "`online`" 
   *   `price` (*type:* `GoogleApi.Content.V21.Model.Price.t`, *default:* `nil`) - Price of the item.
   *   `minEnergyEfficiencyClass` (*type:* `String.t`, *default:* `nil`) - The energy efficiency class as defined in EU directive 2010/30/EU.
+  *   `pause` (*type:* `String.t`, *default:* `nil`) - Publication of this item should be temporarily paused. Acceptable values are: - "`ads`" 
   *   `mobileLinkTemplate` (*type:* `String.t`, *default:* `nil`) - URL template for merchant hosted local storefront optimized for mobile devices.
   *   `imageLink` (*type:* `String.t`, *default:* `nil`) - URL of an image of the item.
   *   `ageGroup` (*type:* `String.t`, *default:* `nil`) - Target age group of the item.
@@ -100,6 +101,7 @@ defmodule GoogleApi.Content.V21.Model.Product do
   *   `contentLanguage` (*type:* `String.t`, *default:* `nil`) - Required. The two-letter ISO 639-1 language code for the item.
   *   `availability` (*type:* `String.t`, *default:* `nil`) - Availability status of the item.
   *   `availabilityDate` (*type:* `String.t`, *default:* `nil`) - The day a pre-ordered product becomes available for delivery, in ISO 8601 format.
+  *   `externalSellerId` (*type:* `String.t`, *default:* `nil`) - Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account.
   *   `productDetails` (*type:* `list(GoogleApi.Content.V21.Model.ProductProductDetail.t)`, *default:* `nil`) - Technical specification or additional product details.
   *   `canonicalLink` (*type:* `String.t`, *default:* `nil`) - URL for the canonical version of your item's landing page.
   *   `productWeight` (*type:* `GoogleApi.Content.V21.Model.ProductWeight.t`, *default:* `nil`) - The weight of the product in the units provided. The value must be between 0 (exclusive) and 2000 (inclusive).
@@ -181,6 +183,7 @@ defmodule GoogleApi.Content.V21.Model.Product do
           :channel => String.t() | nil,
           :price => GoogleApi.Content.V21.Model.Price.t() | nil,
           :minEnergyEfficiencyClass => String.t() | nil,
+          :pause => String.t() | nil,
           :mobileLinkTemplate => String.t() | nil,
           :imageLink => String.t() | nil,
           :ageGroup => String.t() | nil,
@@ -195,6 +198,7 @@ defmodule GoogleApi.Content.V21.Model.Product do
           :contentLanguage => String.t() | nil,
           :availability => String.t() | nil,
           :availabilityDate => String.t() | nil,
+          :externalSellerId => String.t() | nil,
           :productDetails => list(GoogleApi.Content.V21.Model.ProductProductDetail.t()) | nil,
           :canonicalLink => String.t() | nil,
           :productWeight => GoogleApi.Content.V21.Model.ProductWeight.t() | nil,
@@ -272,6 +276,7 @@ defmodule GoogleApi.Content.V21.Model.Product do
   field(:channel)
   field(:price, as: GoogleApi.Content.V21.Model.Price)
   field(:minEnergyEfficiencyClass)
+  field(:pause)
   field(:mobileLinkTemplate)
   field(:imageLink)
   field(:ageGroup)
@@ -286,6 +291,7 @@ defmodule GoogleApi.Content.V21.Model.Product do
   field(:contentLanguage)
   field(:availability)
   field(:availabilityDate)
+  field(:externalSellerId)
   field(:productDetails, as: GoogleApi.Content.V21.Model.ProductProductDetail, type: :list)
   field(:canonicalLink)
   field(:productWeight, as: GoogleApi.Content.V21.Model.ProductWeight)

@@ -421,7 +421,7 @@ defmodule GoogleApi.SecurityCenter.V1.Api.Organizations do
       *   `:quotaUser` (*type:* `String.t`) - Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
       *   `:uploadType` (*type:* `String.t`) - Legacy upload protocol for media (e.g. "media", "multipart").
       *   `:upload_protocol` (*type:* `String.t`) - Upload protocol for media (e.g. "raw", "multipart").
-      *   `:startTime` (*type:* `DateTime.t`) - The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
+      *   `:startTime` (*type:* `DateTime.t`) - The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be earlier or equal to the server time.
       *   `:updateMask` (*type:* `String.t`) - The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
       *   `:body` (*type:* `GoogleApi.SecurityCenter.V1.Model.SecurityMarks.t`) - 
   *   `opts` (*type:* `keyword()`) - Call options
@@ -1329,7 +1329,7 @@ defmodule GoogleApi.SecurityCenter.V1.Api.Organizations do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.SecurityCenter.V1.Connection.t`) - Connection to server
-  *   `organizations_id` (*type:* `String.t`) - Part of `parent`. Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]".
+  *   `organizations_id` (*type:* `String.t`) - Part of `parent`. Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]" or "projects/[project_id]".
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
       *   `:access_token` (*type:* `String.t`) - OAuth access token.
@@ -1559,7 +1559,7 @@ defmodule GoogleApi.SecurityCenter.V1.Api.Organizations do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.SecurityCenter.V1.Connection.t`) - Connection to server
-  *   `organizations_id` (*type:* `String.t`) - Part of `parent`. Required. Name of the organization to list notification configs. Its format is "organizations/[organization_id]".
+  *   `organizations_id` (*type:* `String.t`) - Part of `parent`. Required. Name of the organization to list notification configs. Its format is "organizations/[organization_id]" or "projects/[project_id]".
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
       *   `:access_token` (*type:* `String.t`) - OAuth access token.
@@ -2163,7 +2163,7 @@ defmodule GoogleApi.SecurityCenter.V1.Api.Organizations do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.SecurityCenter.V1.Connection.t`) - Connection to server
-  *   `organizations_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+  *   `organizations_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `sources_id` (*type:* `String.t`) - Part of `resource`. See documentation of `organizationsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
@@ -2391,7 +2391,7 @@ defmodule GoogleApi.SecurityCenter.V1.Api.Organizations do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.SecurityCenter.V1.Connection.t`) - Connection to server
-  *   `organizations_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+  *   `organizations_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `sources_id` (*type:* `String.t`) - Part of `resource`. See documentation of `organizationsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
@@ -2467,7 +2467,7 @@ defmodule GoogleApi.SecurityCenter.V1.Api.Organizations do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.SecurityCenter.V1.Connection.t`) - Connection to server
-  *   `organizations_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+  *   `organizations_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `sources_id` (*type:* `String.t`) - Part of `resource`. See documentation of `organizationsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
@@ -3060,7 +3060,7 @@ defmodule GoogleApi.SecurityCenter.V1.Api.Organizations do
       *   `:quotaUser` (*type:* `String.t`) - Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
       *   `:uploadType` (*type:* `String.t`) - Legacy upload protocol for media (e.g. "media", "multipart").
       *   `:upload_protocol` (*type:* `String.t`) - Upload protocol for media (e.g. "raw", "multipart").
-      *   `:startTime` (*type:* `DateTime.t`) - The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
+      *   `:startTime` (*type:* `DateTime.t`) - The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be earlier or equal to the server time.
       *   `:updateMask` (*type:* `String.t`) - The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
       *   `:body` (*type:* `GoogleApi.SecurityCenter.V1.Model.SecurityMarks.t`) - 
   *   `opts` (*type:* `keyword()`) - Call options

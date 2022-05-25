@@ -27,8 +27,9 @@ defmodule GoogleApi.Compute.V1.Model.BackendService do
   *   `securitySettings` (*type:* `GoogleApi.Compute.V1.Model.SecuritySettings.t`, *default:* `nil`) - This field specifies the security settings that apply to this backend service. This field is applicable to a global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
   *   `customRequestHeaders` (*type:* `list(String.t)`, *default:* `nil`) - Headers that the load balancer adds to proxied requests. See [Creating custom headers](https://cloud.google.com/load-balancing/docs/custom-headers).
   *   `subsetting` (*type:* `GoogleApi.Compute.V1.Model.Subsetting.t`, *default:* `nil`) - 
-  *   `timeoutSec` (*type:* `integer()`, *default:* `nil`) - The backend service timeout has a different meaning depending on the type of load balancer. For more information see, Backend service settings The default is 30 seconds. The full range of timeout values allowed is 1 - 2,147,483,647 seconds. This value can be overridden in the PathMatcher configuration of the UrlMap that references this backend service. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true. Instead, use maxStreamDuration.
+  *   `timeoutSec` (*type:* `integer()`, *default:* `nil`) - The backend service timeout has a different meaning depending on the type of load balancer. For more information see, Backend service settings. The default is 30 seconds. The full range of timeout values allowed goes from 1 through 2,147,483,647 seconds. This value can be overridden in the PathMatcher configuration of the UrlMap that references this backend service. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true. Instead, use maxStreamDuration.
   *   `portName` (*type:* `String.t`, *default:* `nil`) - A named port on a backend instance group representing the port for communication to the backend VMs in that group. The named port must be [defined on each backend instance group](https://cloud.google.com/load-balancing/docs/backend-service#named_ports). This parameter has no meaning if the backends are NEGs. For Internal TCP/UDP Load Balancing and Network Load Balancing, omit port_name.
+  *   `localityLbPolicies` (*type:* `list(GoogleApi.Compute.V1.Model.BackendServiceLocalityLoadBalancingPolicyConfig.t)`, *default:* `nil`) - A list of locality load balancing policies to be used in order of preference. Either the policy or the customPolicy field should be set. Overrides any value set in the localityLbPolicy field. localityLbPolicies is only supported when the BackendService is referenced by a URL Map that is referenced by a target gRPC proxy that has the validateForProxyless field set to true.
   *   `description` (*type:* `String.t`, *default:* `nil`) - An optional description of this resource. Provide this property when you create the resource.
   *   `kind` (*type:* `String.t`, *default:* `compute#backendService`) - [Output Only] Type of resource. Always compute#backendService for backend services.
   *   `sessionAffinity` (*type:* `String.t`, *default:* `nil`) - Type of session affinity to use. The default is NONE. Only NONE and HEADER_FIELD are supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true. For more details, see: [Session Affinity](https://cloud.google.com/load-balancing/docs/backend-service#session_affinity).
@@ -57,6 +58,7 @@ defmodule GoogleApi.Compute.V1.Model.BackendService do
   *   `failoverPolicy` (*type:* `GoogleApi.Compute.V1.Model.BackendServiceFailoverPolicy.t`, *default:* `nil`) - Requires at least one backend instance group to be defined as a backup (failover) backend. For load balancers that have configurable failover: [Internal TCP/UDP Load Balancing](https://cloud.google.com/load-balancing/docs/internal/failover-overview) and [external TCP/UDP Load Balancing](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).
   *   `connectionTrackingPolicy` (*type:* `GoogleApi.Compute.V1.Model.BackendServiceConnectionTrackingPolicy.t`, *default:* `nil`) - Connection Tracking configuration for this BackendService. Connection tracking policy settings are only available for Network Load Balancing and Internal TCP/UDP Load Balancing.
   *   `circuitBreakers` (*type:* `GoogleApi.Compute.V1.Model.CircuitBreakers.t`, *default:* `nil`) - 
+  *   `serviceBindings` (*type:* `list(String.t)`, *default:* `nil`) - URLs of networkservices.ServiceBinding resources. Can only be set if load balancing scheme is INTERNAL_SELF_MANAGED. If set, lists of backends and health checks must be both empty.
   """
 
   use GoogleApi.Gax.ModelBase
@@ -70,6 +72,9 @@ defmodule GoogleApi.Compute.V1.Model.BackendService do
           :subsetting => GoogleApi.Compute.V1.Model.Subsetting.t() | nil,
           :timeoutSec => integer() | nil,
           :portName => String.t() | nil,
+          :localityLbPolicies =>
+            list(GoogleApi.Compute.V1.Model.BackendServiceLocalityLoadBalancingPolicyConfig.t())
+            | nil,
           :description => String.t() | nil,
           :kind => String.t() | nil,
           :sessionAffinity => String.t() | nil,
@@ -99,7 +104,8 @@ defmodule GoogleApi.Compute.V1.Model.BackendService do
           :failoverPolicy => GoogleApi.Compute.V1.Model.BackendServiceFailoverPolicy.t() | nil,
           :connectionTrackingPolicy =>
             GoogleApi.Compute.V1.Model.BackendServiceConnectionTrackingPolicy.t() | nil,
-          :circuitBreakers => GoogleApi.Compute.V1.Model.CircuitBreakers.t() | nil
+          :circuitBreakers => GoogleApi.Compute.V1.Model.CircuitBreakers.t() | nil,
+          :serviceBindings => list(String.t()) | nil
         }
 
   field(:port)
@@ -110,6 +116,12 @@ defmodule GoogleApi.Compute.V1.Model.BackendService do
   field(:subsetting, as: GoogleApi.Compute.V1.Model.Subsetting)
   field(:timeoutSec)
   field(:portName)
+
+  field(:localityLbPolicies,
+    as: GoogleApi.Compute.V1.Model.BackendServiceLocalityLoadBalancingPolicyConfig,
+    type: :list
+  )
+
   field(:description)
   field(:kind)
   field(:sessionAffinity)
@@ -142,6 +154,7 @@ defmodule GoogleApi.Compute.V1.Model.BackendService do
   )
 
   field(:circuitBreakers, as: GoogleApi.Compute.V1.Model.CircuitBreakers)
+  field(:serviceBindings, type: :list)
 end
 
 defimpl Poison.Decoder, for: GoogleApi.Compute.V1.Model.BackendService do

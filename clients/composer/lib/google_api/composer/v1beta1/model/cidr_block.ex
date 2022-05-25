@@ -17,12 +17,12 @@
 
 defmodule GoogleApi.Composer.V1beta1.Model.CidrBlock do
   @moduledoc """
-  CidrBlock contains an optional name and one CIDR block.
+  CIDR block with an optional name.
 
   ## Attributes
 
-  *   `cidrBlock` (*type:* `String.t`, *default:* `nil`) - cidr_block must be specified in CIDR notation.
-  *   `displayName` (*type:* `String.t`, *default:* `nil`) - display_name is a field for users to identify CIDR blocks.
+  *   `cidrBlock` (*type:* `String.t`, *default:* `nil`) - CIDR block that must be specified in CIDR notation.
+  *   `displayName` (*type:* `String.t`, *default:* `nil`) - User-defined name that identifies the CIDR block.
   """
 
   use GoogleApi.Gax.ModelBase

@@ -21,8 +21,8 @@ defmodule GoogleApi.Composer.V1beta1.Model.MasterAuthorizedNetworksConfig do
 
   ## Attributes
 
-  *   `cidrBlocks` (*type:* `list(GoogleApi.Composer.V1beta1.Model.CidrBlock.t)`, *default:* `nil`) - cidr_blocks define up to 50 external networks that could access Kubernetes master through HTTPS.
-  *   `enabled` (*type:* `boolean()`, *default:* `nil`) - Whether or not master authorized networks is enabled.
+  *   `cidrBlocks` (*type:* `list(GoogleApi.Composer.V1beta1.Model.CidrBlock.t)`, *default:* `nil`) - Up to 50 external networks that could access Kubernetes master through HTTPS.
+  *   `enabled` (*type:* `boolean()`, *default:* `nil`) - Whether or not master authorized networks feature is enabled.
   """
 
   use GoogleApi.Gax.ModelBase

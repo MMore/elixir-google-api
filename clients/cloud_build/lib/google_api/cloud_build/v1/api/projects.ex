@@ -480,7 +480,7 @@ defmodule GoogleApi.CloudBuild.V1.Api.Projects do
       *   `:quotaUser` (*type:* `String.t`) - Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
       *   `:uploadType` (*type:* `String.t`) - Legacy upload protocol for media (e.g. "media", "multipart").
       *   `:upload_protocol` (*type:* `String.t`) - Upload protocol for media (e.g. "raw", "multipart").
-      *   `:gheConfigId` (*type:* `String.t`) - Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig’s resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
+      *   `:gheConfigId` (*type:* `String.t`) - Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig's resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
       *   `:projectId` (*type:* `String.t`) - ID of the project.
       *   `:body` (*type:* `GoogleApi.CloudBuild.V1.Model.GitHubEnterpriseConfig.t`) - 
   *   `opts` (*type:* `keyword()`) - Call options
@@ -855,93 +855,6 @@ defmodule GoogleApi.CloudBuild.V1.Api.Projects do
     connection
     |> Connection.execute(request)
     |> Response.decode(opts ++ [struct: %GoogleApi.CloudBuild.V1.Model.Operation{}])
-  end
-
-  @doc """
-  Add a Bitbucket Server repository to a given BitbucketServerConfig's connected repositories. This API is experimental.
-
-  ## Parameters
-
-  *   `connection` (*type:* `GoogleApi.CloudBuild.V1.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `config`. Required. The name of the `BitbucketServerConfig` to add a connected repository. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{config}`
-  *   `locations_id` (*type:* `String.t`) - Part of `config`. See documentation of `projectsId`.
-  *   `bitbucket_server_configs_id` (*type:* `String.t`) - Part of `config`. See documentation of `projectsId`.
-  *   `optional_params` (*type:* `keyword()`) - Optional parameters
-      *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
-      *   `:access_token` (*type:* `String.t`) - OAuth access token.
-      *   `:alt` (*type:* `String.t`) - Data format for response.
-      *   `:callback` (*type:* `String.t`) - JSONP
-      *   `:fields` (*type:* `String.t`) - Selector specifying which fields to include in a partial response.
-      *   `:key` (*type:* `String.t`) - API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
-      *   `:oauth_token` (*type:* `String.t`) - OAuth 2.0 token for the current user.
-      *   `:prettyPrint` (*type:* `boolean()`) - Returns response with indentations and line breaks.
-      *   `:quotaUser` (*type:* `String.t`) - Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
-      *   `:uploadType` (*type:* `String.t`) - Legacy upload protocol for media (e.g. "media", "multipart").
-      *   `:upload_protocol` (*type:* `String.t`) - Upload protocol for media (e.g. "raw", "multipart").
-      *   `:body` (*type:* `GoogleApi.CloudBuild.V1.Model.AddBitbucketServerConnectedRepositoryRequest.t`) - 
-  *   `opts` (*type:* `keyword()`) - Call options
-
-  ## Returns
-
-  *   `{:ok, %GoogleApi.CloudBuild.V1.Model.AddBitbucketServerConnectedRepositoryResponse{}}` on success
-  *   `{:error, info}` on failure
-  """
-  @spec cloudbuild_projects_locations_bitbucket_server_configs_add_bitbucket_server_connected_repository(
-          Tesla.Env.client(),
-          String.t(),
-          String.t(),
-          String.t(),
-          keyword(),
-          keyword()
-        ) ::
-          {:ok, GoogleApi.CloudBuild.V1.Model.AddBitbucketServerConnectedRepositoryResponse.t()}
-          | {:ok, Tesla.Env.t()}
-          | {:ok, list()}
-          | {:error, any()}
-  def cloudbuild_projects_locations_bitbucket_server_configs_add_bitbucket_server_connected_repository(
-        connection,
-        projects_id,
-        locations_id,
-        bitbucket_server_configs_id,
-        optional_params \\ [],
-        opts \\ []
-      ) do
-    optional_params_config = %{
-      :"$.xgafv" => :query,
-      :access_token => :query,
-      :alt => :query,
-      :callback => :query,
-      :fields => :query,
-      :key => :query,
-      :oauth_token => :query,
-      :prettyPrint => :query,
-      :quotaUser => :query,
-      :uploadType => :query,
-      :upload_protocol => :query,
-      :body => :body
-    }
-
-    request =
-      Request.new()
-      |> Request.method(:post)
-      |> Request.url(
-        "/v1/projects/{projectsId}/locations/{locationsId}/bitbucketServerConfigs/{bitbucketServerConfigsId}:addBitbucketServerConnectedRepository",
-        %{
-          "projectsId" => URI.encode(projects_id, &URI.char_unreserved?/1),
-          "locationsId" => URI.encode(locations_id, &URI.char_unreserved?/1),
-          "bitbucketServerConfigsId" =>
-            URI.encode(bitbucket_server_configs_id, &URI.char_unreserved?/1)
-        }
-      )
-      |> Request.add_optional_params(optional_params_config, optional_params)
-      |> Request.library_version(@library_version)
-
-    connection
-    |> Connection.execute(request)
-    |> Response.decode(
-      opts ++
-        [struct: %GoogleApi.CloudBuild.V1.Model.AddBitbucketServerConnectedRepositoryResponse{}]
-    )
   end
 
   @doc """
@@ -1359,7 +1272,7 @@ defmodule GoogleApi.CloudBuild.V1.Api.Projects do
   end
 
   @doc """
-  Remove a Bitbucket Server repository from an given BitbucketServerConfig’s connected repositories. This API is experimental.
+  Remove a Bitbucket Server repository from a given BitbucketServerConfig's connected repositories. This API is experimental.
 
   ## Parameters
 
@@ -2125,7 +2038,7 @@ defmodule GoogleApi.CloudBuild.V1.Api.Projects do
       *   `:quotaUser` (*type:* `String.t`) - Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
       *   `:uploadType` (*type:* `String.t`) - Legacy upload protocol for media (e.g. "media", "multipart").
       *   `:upload_protocol` (*type:* `String.t`) - Upload protocol for media (e.g. "raw", "multipart").
-      *   `:gheConfigId` (*type:* `String.t`) - Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig’s resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
+      *   `:gheConfigId` (*type:* `String.t`) - Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig's resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
       *   `:projectId` (*type:* `String.t`) - ID of the project.
       *   `:body` (*type:* `GoogleApi.CloudBuild.V1.Model.GitHubEnterpriseConfig.t`) - 
   *   `opts` (*type:* `keyword()`) - Call options
@@ -3359,7 +3272,7 @@ defmodule GoogleApi.CloudBuild.V1.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.CloudBuild.V1.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `name`. Required. The name of the `WorkerPool` to delete. Format: `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.
+  *   `projects_id` (*type:* `String.t`) - Part of `name`. Required. The name of the `WorkerPool` to delete. Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
   *   `locations_id` (*type:* `String.t`) - Part of `name`. See documentation of `projectsId`.
   *   `worker_pools_id` (*type:* `String.t`) - Part of `name`. See documentation of `projectsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters

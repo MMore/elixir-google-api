@@ -18,7 +18,7 @@
 defmodule GoogleApi.GKEHub.Mixfile do
   use Mix.Project
 
-  @version "0.5.0"
+  @version "0.6.0"
 
   def project() do
     [

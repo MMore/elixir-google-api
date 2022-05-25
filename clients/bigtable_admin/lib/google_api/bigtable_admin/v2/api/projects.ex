@@ -251,7 +251,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
@@ -479,7 +479,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
@@ -555,7 +555,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
       *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
@@ -1847,7 +1847,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `clusters_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `backups_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
@@ -2112,7 +2112,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `clusters_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `backups_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
@@ -2199,7 +2199,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `clusters_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `backups_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
@@ -2279,6 +2279,97 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
     |> Connection.execute(request)
     |> Response.decode(
       opts ++ [struct: %GoogleApi.BigtableAdmin.V2.Model.TestIamPermissionsResponse{}]
+    )
+  end
+
+  @doc """
+  Lists hot tablets in a cluster, within the time range provided. Hot tablets are ordered based on CPU usage.
+
+  ## Parameters
+
+  *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
+  *   `projects_id` (*type:* `String.t`) - Part of `parent`. Required. The cluster name to list hot tablets. Value is in the following form: `projects/{project}/instances/{instance}/clusters/{cluster}`.
+  *   `instances_id` (*type:* `String.t`) - Part of `parent`. See documentation of `projectsId`.
+  *   `clusters_id` (*type:* `String.t`) - Part of `parent`. See documentation of `projectsId`.
+  *   `optional_params` (*type:* `keyword()`) - Optional parameters
+      *   `:"$.xgafv"` (*type:* `String.t`) - V1 error format.
+      *   `:access_token` (*type:* `String.t`) - OAuth access token.
+      *   `:alt` (*type:* `String.t`) - Data format for response.
+      *   `:callback` (*type:* `String.t`) - JSONP
+      *   `:fields` (*type:* `String.t`) - Selector specifying which fields to include in a partial response.
+      *   `:key` (*type:* `String.t`) - API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+      *   `:oauth_token` (*type:* `String.t`) - OAuth 2.0 token for the current user.
+      *   `:prettyPrint` (*type:* `boolean()`) - Returns response with indentations and line breaks.
+      *   `:quotaUser` (*type:* `String.t`) - Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+      *   `:uploadType` (*type:* `String.t`) - Legacy upload protocol for media (e.g. "media", "multipart").
+      *   `:upload_protocol` (*type:* `String.t`) - Upload protocol for media (e.g. "raw", "multipart").
+      *   `:endTime` (*type:* `DateTime.t`) - The end time to list hot tablets.
+      *   `:pageSize` (*type:* `integer()`) - Maximum number of results per page. A page_size that is empty or zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error. Following the first request, subsequent paginated calls do not need a page_size field. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
+      *   `:pageToken` (*type:* `String.t`) - The value of `next_page_token` returned by a previous call.
+      *   `:startTime` (*type:* `DateTime.t`) - The start time to list hot tablets. The hot tablets in the response will have start times between the requested start time and end time. Start time defaults to Now if it is unset, and end time defaults to Now - 24 hours if it is unset. The start time should be less than the end time, and the maximum allowed time range between start time and end time is 48 hours. Start time and end time should have values between Now and Now - 14 days.
+  *   `opts` (*type:* `keyword()`) - Call options
+
+  ## Returns
+
+  *   `{:ok, %GoogleApi.BigtableAdmin.V2.Model.ListHotTabletsResponse{}}` on success
+  *   `{:error, info}` on failure
+  """
+  @spec bigtableadmin_projects_instances_clusters_hot_tablets_list(
+          Tesla.Env.client(),
+          String.t(),
+          String.t(),
+          String.t(),
+          keyword(),
+          keyword()
+        ) ::
+          {:ok, GoogleApi.BigtableAdmin.V2.Model.ListHotTabletsResponse.t()}
+          | {:ok, Tesla.Env.t()}
+          | {:ok, list()}
+          | {:error, any()}
+  def bigtableadmin_projects_instances_clusters_hot_tablets_list(
+        connection,
+        projects_id,
+        instances_id,
+        clusters_id,
+        optional_params \\ [],
+        opts \\ []
+      ) do
+    optional_params_config = %{
+      :"$.xgafv" => :query,
+      :access_token => :query,
+      :alt => :query,
+      :callback => :query,
+      :fields => :query,
+      :key => :query,
+      :oauth_token => :query,
+      :prettyPrint => :query,
+      :quotaUser => :query,
+      :uploadType => :query,
+      :upload_protocol => :query,
+      :endTime => :query,
+      :pageSize => :query,
+      :pageToken => :query,
+      :startTime => :query
+    }
+
+    request =
+      Request.new()
+      |> Request.method(:get)
+      |> Request.url(
+        "/v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}/hotTablets",
+        %{
+          "projectsId" => URI.encode(projects_id, &URI.char_unreserved?/1),
+          "instancesId" => URI.encode(instances_id, &URI.char_unreserved?/1),
+          "clustersId" => URI.encode(clusters_id, &URI.char_unreserved?/1)
+        }
+      )
+      |> Request.add_optional_params(optional_params_config, optional_params)
+      |> Request.library_version(@library_version)
+
+    connection
+    |> Connection.execute(request)
+    |> Response.decode(
+      opts ++ [struct: %GoogleApi.BigtableAdmin.V2.Model.ListHotTabletsResponse{}]
     )
   end
 
@@ -2775,7 +2866,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `tables_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
@@ -3097,7 +3188,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `tables_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
@@ -3180,7 +3271,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
   ## Parameters
 
   *   `connection` (*type:* `GoogleApi.BigtableAdmin.V2.Connection.t`) - Connection to server
-  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+  *   `projects_id` (*type:* `String.t`) - Part of `resource`. REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
   *   `instances_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `tables_id` (*type:* `String.t`) - Part of `resource`. See documentation of `projectsId`.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters
@@ -3352,7 +3443,7 @@ defmodule GoogleApi.BigtableAdmin.V2.Api.Projects do
       *   `:quotaUser` (*type:* `String.t`) - Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
       *   `:uploadType` (*type:* `String.t`) - Legacy upload protocol for media (e.g. "media", "multipart").
       *   `:upload_protocol` (*type:* `String.t`) - Upload protocol for media (e.g. "raw", "multipart").
-      *   `:filter` (*type:* `String.t`) - A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+      *   `:filter` (*type:* `String.t`) - A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
       *   `:pageSize` (*type:* `integer()`) - The maximum number of results to return. If not set, the service selects a default.
       *   `:pageToken` (*type:* `String.t`) - A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
   *   `opts` (*type:* `keyword()`) - Call options
