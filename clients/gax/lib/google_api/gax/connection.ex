@@ -15,7 +15,16 @@
 defmodule GoogleApi.Gax.Connection do
   @moduledoc """
   This module helps define and configure server connection.
+
+  Gzip and deflate responses are decompressed with a cap on the decompressed
+  size, 512 MiB by default. Set it per client application, for example
+  `config :google_api_storage, max_body_size: 1024 * 1024 * 1024`; it is read
+  on every request. On Tesla 1.18.3 and later a response over the cap raises
+  `Tesla.Middleware.Compression.Error` rather than returning `{:error, _}`.
+  Older Tesla ignores the cap.
   """
+
+  @default_max_body_size 512 * 1024 * 1024
 
   defmacro __using__(opts) do
     quote do
@@ -33,7 +42,15 @@ defmodule GoogleApi.Gax.Connection do
         )
       )
 
-      plug(Tesla.Middleware.DecompressResponse, [])
+      plug(
+        Tesla.Middleware.DecompressResponse,
+        max_body_size:
+          Application.get_env(
+            unquote(Keyword.get(opts, :otp_app)),
+            :max_body_size,
+            unquote(Keyword.get(opts, :max_body_size, @default_max_body_size))
+          )
+      )
 
       plug(Tesla.Middleware.EncodeJson, engine: Poison)
 
