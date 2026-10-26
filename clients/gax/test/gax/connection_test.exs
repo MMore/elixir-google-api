@@ -81,6 +81,30 @@ defmodule Gax.ConnectionTest do
     assert 4 == length(body.parts)
   end
 
+  test "builds a request with an atom file key" do
+    request =
+      Request.new()
+      |> Request.add_param(:file, :data, __ENV__.file)
+      |> Connection.build_request()
+
+    body = %Tesla.Multipart{} = Keyword.get(request, :body)
+    [part] = body.parts
+    assert {:name, "data"} in part.dispositions
+  end
+
+  test "builds a multipart upload request with metadata and an atom file key" do
+    request =
+      Request.new()
+      |> Request.add_param(:body, :metadata, %{name: "upload.txt"})
+      |> Request.add_param(:file, :data, __ENV__.file)
+      |> Connection.build_request()
+
+    body = %Tesla.Multipart{} = Keyword.get(request, :body)
+    [part1, part2] = body.parts
+    assert [name: "metadata"] == part1.dispositions
+    assert {:name, "data"} in part2.dispositions
+  end
+
   test "builds a multipart upload request with iodata and content type" do
     metadata = %{contentType: "text/plain"}
     data = ["1", ["2"]]
@@ -92,6 +116,8 @@ defmodule Gax.ConnectionTest do
 
     body = %Tesla.Multipart{} = Keyword.get(request, :body)
     [part1, part2] = body.parts
+    assert [name: "metadata"] == part1.dispositions
+    assert [name: "data"] == part2.dispositions
     assert "{\"contentType\":\"text/plain\"}" == part1.body
     assert [{:"Content-Type", "application/json"}] == part1.headers
     assert data == part2.body
